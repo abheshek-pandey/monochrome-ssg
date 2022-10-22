@@ -8,7 +8,7 @@ Called "Monochrome" because it was for being built for a website that was render
 
 The name stuck to the argument that the pink is the only "chrome" in the surrounding greyscale. Though it was mostly because I could not think of anything else.
 
-View full notebook [here](www.abhe.in/monochrome-ssg/).
+View full notebook [here](https://www.abhe.in/monochrome-ssg/).
 
 The code was inspired by [Jahongir Rahmonov's](https://rahmonov.me/posts/static-site-generator/) tutorial.
 
