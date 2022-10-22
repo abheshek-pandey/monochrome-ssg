@@ -1,0 +1,6 @@
+__pycache__
+.vscode
+content
+output
+requirements.txt
+templates
