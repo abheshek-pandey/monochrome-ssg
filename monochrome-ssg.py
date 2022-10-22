@@ -22,22 +22,26 @@ def inputFile():
 
 def newBlog():
     with open(input_filename, 'r') as file:
-        parsed_md = markdown(file.read(), extras=['metadata'])
+        parsed_md = markdown(file.read(), extras=['metadata','fenced-code-blocks', 'strike', 'footnotes'], footnote_title="Jump back to footnote %d in the text.", footnote_return_symbol="&#8617;")
 
-        env = Environment(loader=PackageLoader('monochrome', 'templates'))
+        env = Environment(loader=PackageLoader('package', 'templates'))
         blog_template = env.get_template('blog-template.html')
 
         data = {
             'content': parsed_md,
             'title': parsed_md.metadata['title'],
-            'date': parsed_md.metadata['date']
+            'date': parsed_md.metadata['date'],
+            'tags': parsed_md.metadata['tags'],
+            # 'thumbnail': parsed_md.metadata['thumbnail'],
+            'summary': parsed_md.metadata['summary'],
+            'slug': parsed_md.metadata['slug'],
         }
 
-    blog_html_content = blog_template.render(post=parsed_md.metadata)
+    blog_html_content = blog_template.render(post=data)
     blog_filepath = 'C:\\Users\\Abheshek Pandey\\Documents\\abhe-dot-in\\blog\\posts\\' + parsed_md.metadata['slug'] + '.html'
 
 
-    os.makedirs(os.path.dirname(blog_filepath), exist_ok=True)
+    # os.makedirs(os.path.dirname(blog_filepath), exist_ok=True)
     with open(blog_filepath, 'w') as file:
         file.write(blog_html_content)
     
@@ -52,7 +56,7 @@ def indexUpdate():
         file_path = os.path.join('C:\\Users\\Abheshek Pandey\\Documents\\abhe-dot-in\\blog\\content\\', blog_md)
 
         with open(file_path, 'r') as file:
-            BLOG[blog_md] = markdown(file.read(),extras=['metadata'])
+            BLOG[blog_md] = markdown(file.read(),extras=['metadata', 'fenced-code-blocks', 'strike', 'footnotes'], footnote_title="Jump back to footnote %d in the text.", footnote_return_symbol="&#8617;")
 
 
     BLOG = {
@@ -74,15 +78,22 @@ def indexUpdate():
     all_posts_html = all_posts_template.render(posts=index_blog_metadata)
 
     recents = []
+    blogsize = len(index_blog_metadata) 
+
+    if blogsize < 5:
+        r = blogsize
+    else:
+        r = 5
+
     i=0
-    while i <5:
+    while i < r:
         recents.append(index_blog_metadata[i])
         i = i + 1
     
-    recent_posts_html = all_posts_template.render(posts=recents)
+    recent_posts_html = recent_posts_template.render(posts=recents)
 
 
-    with open('C:\\Users\\Abheshek Pandey\\Documents\\abhe-dot-in\\blog\\all-posts.html', 'w') as file:
+    with open('C:\\Users\\Abheshek Pandey\\Documents\\abhe-dot-in\\blog\\all.html', 'w') as file:
         file.write(all_posts_html)
     with open('C:\\Users\\Abheshek Pandey\\Documents\\abhe-dot-in\\blog\\index.html', 'w') as file:
         file.write(recent_posts_html)

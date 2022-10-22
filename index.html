@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>monochrome-ssg</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>index</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14604,9 +14604,9 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="i.-About">i. About<a class="anchor-link" href="#i.-About">&#182;</a></h2><p>A custom-built <code>Python</code> Static Site-Generator(SSG) used to generate pages for my personal <a href="https://www.abhe.in/">website</a> and <a href="https://www.abhe.in/blog/">blog</a>. It's used to fulfill the &quot;back-end&quot; needs of my website hosted here on GutHub Pages.</p>
+<h2 id="i.-About">i. About<a class="anchor-link" href="#i.-About">&#182;</a></h2><p>A custom-built <code>Python</code> Static Site-Generator(SSG) used to generate pages for my personal <a href="https://www.abhe.in/">website</a> and <a href="https://www.abhe.in/blog/">blog</a>. It's used to fulfil the &quot;back-end&quot; needs of my website hosted here on GitHub Pages.</p>
 <p>Called &quot;Monochrome&quot; because it was for being built for a website that was rendered using mostly black and white, and a hint of grey. However, before I could finish this script, I added a dark-mode that's got a lovely shade of <a href="https://www.color-hex.com/color/e62492">pink</a> as the highlight colour.</p>
-<p>The name stuck to the argument that the pink is the only &quot;chrome&quot; in the surrounding greyscale. Though it was mostly because I could not think of anything else.</p>
+<p>The name stuck due to the argument that the pink is the only &quot;chrome&quot; in the surrounding greyscale. Though it was mostly because I could not think of anything else.</p>
 <p>The code was inspired by <a href="https://rahmonov.me/posts/static-site-generator/">Jahongir Rahmonov's</a> tutorial.</p>
 
 </div>
@@ -14715,8 +14715,8 @@ summary: {{Summary of the page}}
 │   ├── crazy-ideas.md
 │   └── writers-block.md
 ├── content
-│   ├── arson.md
-│   └── boiled-egg.md
+│   ├── 2022-09-10-arson.md
+│   └── 2022-19-11-boiled-egg.md
 ├── posts
 │   ├── arson-crime-or-hobby.html
 │   └── my-life-as-a-boiled-egg.html
@@ -14840,9 +14840,6 @@ summary: {{Summary of the page}}
     <span class="n">blog_html_content</span> <span class="o">=</span> <span class="n">post_detail_template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">post</span><span class="o">=</span><span class="n">parsed_md</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
     <span class="n">blog_filepath</span> <span class="o">=</span> <span class="s1">&#39;output/posts/</span><span class="si">{slug}</span><span class="s1">.html&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">slug</span><span class="o">=</span><span class="n">parsed_md</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;slug&#39;</span><span class="p">])</span>
 
-    <span class="c1"># print(parsed_md.metadata[&#39;slug&#39;])</span>
-
-    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">blog_filepath</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;blog_filepath&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
         <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">blog_html_content</span><span class="p">)</span>
     
@@ -14904,8 +14901,15 @@ summary: {{Summary of the page}}
     <span class="n">all_posts_html</span> <span class="o">=</span> <span class="n">all_posts_template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">posts</span><span class="o">=</span><span class="n">index_blog_metadata</span><span class="p">)</span>
 
     <span class="n">recents</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">blogsize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">index_blog_metadata</span><span class="p">)</span> 
+
+    <span class="k">if</span> <span class="n">blogsize</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">blogsize</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="mi">5</span>
+    
     <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
-    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span><span class="mi">5</span><span class="p">:</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">:</span>
         <span class="n">recents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index_blog_metadata</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
     
