@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width", initial-scale=1.0 charset="utf-8" />
+    <!--Title-->
+    <title>Recents - Notes from the Slumberground</title>
+    <meta name="description" content="Notes from the Slumber Ground: Index of Abheshek Pandey's personal blog.">
+    <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/styles/style.css">    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,700;1,500;1,700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+</head>
+<body>
+    <!--Header-->
+    <header class="site-header" id="site-header">
+        <nav class="topnav" id="myTopnav">
+            <a href="/" class="logo">Abheshek Pandey</a>
+            <div class="split">
+                <a href="/#about">About</a>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <a href="/tinkerings.html" class="button">Tinkerings</a>
+                    </button>
+                        <div class="dropdown-content">
+                            <a href="/tinkerings.html#code">Code</a>
+                            <a href="/tinkerings.html#algorhythm">Algorhythm</a>
+                            <!--<a href="#">Web Design</a>-->
+                        </div>
+                </div>
+                <a href="/photography/">Photography</a>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <a href="/ayande/" class="button">Ayan De</a>
+                    </button>
+                        <div class="dropdown-content">
+                            <a href="/ayande/#about">About</a>
+                            <a href="/ayande/#bibliography">Bibliography</a>
+                            <a href="/ayande/#contact">Contact</a>
+                        </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <a href="/blog/" class="button">Blog</a>
+                    </button>
+                        <div class="dropdown-content">
+                            <a href="/blog/">Recent</a>
+                            <a href="/blog/all.html">All</a>
+                        </div>
+                </div> 
+                <a href="/#contact">Contact</a>
+                <button class="iconica place-items-center" id="theme-toggle-button">
+                    <span class="sun-icon">
+                        <i class="material-symbols-sharp">light_mode</i>
+                    </span>
+                    <span class="moon-icon">
+                        <i class="material-symbols-sharp">dark_mode</i>
+                    </span>
+                </button>
+                <a href="javascript:void(0);" style="font-size:15px;" class="icon menuMenu" onclick="menuButton()">
+                    <span class="open-menu-icon">
+                        <i class="material-symbols-sharp" id="menu">menu</i>
+                    </span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+<div class="blog-title">
+  <p>Notes from the Slumberground</p>
+</div>
+
+<main class="blog">
+
+<h1>Recent Posts</h1>
+
+{% for post in posts %}
+  <div>
+        <h2><a href="/blog/posts/{{ post.slug }}.html">{{post.title}}</a><small> </small></h2>
+        <a href="/blog/posts/{{ post.slug }}.html" title="{{post.title}}"><img src="{{post.thumbnail}}" alt=""></a>
+        <p>{{post.date}} | Tags: <em>{{post.tags}}</em> <br>
+        {{post.summary}}</p>
+        <hr>
+  </div>
+{% endfor %}
+
+</main>
+
+<footer class="site-footer">
+    <hr> 
+    <p>
+        &copy; <span id="copyright-year"></span> Abheshek Pandey<br>
+        <a href="mailto:pandey.abheshek+abhedotin@gmail.com">pandey.abheshek@gmail.com</a> | Mumbai, IN</a><br>
+    </p>
+
+</footer>
+
+<script src="/scripts/script.js"></script>
+
+</body>
+</html>
